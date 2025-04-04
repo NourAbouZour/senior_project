@@ -1,0 +1,126 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+    color: #333;
+  }
+  
+  .contact-us {
+    padding: 40px 20px;
+    background-color: #fff;
+    margin-top: 50px;
+  }
+  
+  .contact-us h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+  
+  /* Contact Container */
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  /* Map Section */
+  .map-container {
+    flex: 1 1 400px;
+    min-width: 300px;
+    position: relative;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+    border-radius: 10px;
+  }
+  
+  .map-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  .map-label span {
+    font-weight: bold;
+    display: block;
+  }
+  
+  button {
+    margin-top: 15px;
+    background-color: #2980b9;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .get-direction:hover {
+    background-color: #1f6390;
+  }
+  
+  .get-direction i {
+    margin-right: 8px;
+  }
+  
+  /* Contact Details */
+  .contact-details {
+    flex: 1 1 400px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .detail {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f1f1f1;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detail i {
+    font-size: 1.5rem;
+    color: #2980b9;
+  }
+  
+  .detail h4 {
+    margin: 0 0 5px;
+    font-size: 1rem;
+    color: #2c3e50;
+  }
+  
+  .detail p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .map-container iframe {
+      height: 250px;
+    }
+  }
+  

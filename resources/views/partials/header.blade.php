@@ -13,9 +13,9 @@
         <nav class="nav-menu">
             <ul class="headercontents">
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('products') }}">Products</a></li>
-                <li><a href="{{ url('about-us') }}">About Us</a></li>
-                <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                <li><a href="{{ route('products') }}">Products</a></li>
+                <li><a href="{{ route('aboutus') }}">About Us</a></li>
+                <li><a href="{{ route('contact') }}">Contact Us</a></li>
                 <li><a href="{{ url('functions') }}">Functions</a></li>
             </ul>
             <ul class="headercontentslogo">
