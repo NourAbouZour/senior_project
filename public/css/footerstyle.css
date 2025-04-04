@@ -1,0 +1,117 @@
+ footer {
+     background-color: #4756ca;
+     color: white;
+     padding-top: 15px;
+     width: 100%;
+ }
+ 
+ .footer-container {
+     max-width: 1200px;
+     margin: auto;
+     text-align: center;
+ }
+ /* Layout for Newsletter, Menu, and Support */
+ 
+ .footer-content {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     text-align: left;
+     flex-wrap: wrap;
+ }
+ 
+ .newsletter {
+     flex: 1.5;
+     padding-right: 40px;
+ }
+ 
+ .newsletter h2 {
+     font-size: 16px;
+     font-weight: bold;
+ }
+ 
+ .footer-content .newsletter form {
+     display: flex;
+     align-items: center;
+     margin-top: 10px;
+ }
+ 
+ input[type="email"] {
+     padding: 10px;
+     width: 200px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     margin-right: 5px;
+ }
+ 
+ .footer-content button {
+     background: none;
+     border: none;
+     font-size: 18px;
+     cursor: pointer;
+ }
+ 
+ .menu,
+ .support {
+     flex: 1;
+ }
+ 
+ .menu h3,
+ .support h3 {
+     font-size: 16px;
+     margin-bottom: 10px;
+ }
+ 
+ .menu ul,
+ .support ul {
+     list-style: none;
+     padding: 0;
+ }
+ 
+ .menu ul li,
+ .support ul li {
+     margin: 5px 0;
+ }
+ 
+ .menu ul li a,
+ .support ul li a {
+     text-decoration: none;
+     color: black;
+     font-size: 14px;
+     color: white;
+ }
+ /* Footer Bottom */
+ 
+ .footer-bottom {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-top: 20px;
+ }
+ 
+ .payment-icons img {
+     width: 40px;
+     margin: 0 5px;
+ }
+ 
+ .social-icons a {
+     font-size: 20px;
+     margin: 0 10px;
+     color: black;
+ }
+ /* Responsive */
+ 
+ @media (max-width: 768px) {
+     .footer-content {
+         flex-direction: column;
+         text-align: center;
+     }
+     .newsletter {
+         padding-right: 0;
+         margin-bottom: 20px;
+     }
+     .menu,
+     .support {
+         text-align: center;
+     }
+ }

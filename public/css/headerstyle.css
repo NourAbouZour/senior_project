@@ -1,0 +1,173 @@
+/* Base Header */
+
+header {
+    background: transparent;
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.headcontents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* We'll make this background white on mobile when menu is open */
+    transition: background-color 0.3s ease;
+}
+
+.logo {
+    height: 70px;
+    z-index: 100;
+}
+
+header.scrolled {
+    background-color: white;
+}
+
+header.scrolled a {
+    color: black;
+}
+
+
+/* Navigation Links */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    /* default color (when transparent header) */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #007BFF;
+}
+
+
+/* Hamburger */
+
+.hamburger {
+    display: none;
+    /* Shown only on mobile via media query */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+}
+
+.bar {
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    /* default bar color */
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+
+/* Transform bars into an 'X' when .active */
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* Make bars black when active */
+
+.hamburger.active .bar {
+    background-color: #000;
+}
+
+
+/* -------------- MOBILE STYLES -------------- */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        z-index: 1002;
+        /* above the nav overlay */
+    }
+    /* When the menu is inactive, hide it */
+    .nav-menu {
+        display: none;
+    }
+    /* Make the nav a full-screen overlay when active */
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        /* all white background */
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 99;
+        /* below hamburger but above everything else */
+        justify-content: center;
+        /* center the menu items vertically */
+    }
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    .nav-menu li {
+        margin: 10px 0;
+    }
+    /* Hide normal header navigation (the inline one) */
+    .headercontents {
+        display: none;
+    }
+    /*
+      If you want the header area (logo + hamburger) itself 
+      to always be white on mobile, you can do:
+    */
+    .headcontents {
+        width: 100%;
+        background-color: transparent;
+        /* default, can be changed */
+        position: relative;
+        z-index: 1003;
+        /* on top of the overlay */
+    }
+    /*
+      When the hamburger is active, turn headcontents white as well
+      so that the top portion with the logo/hamburger is also white
+    */
+    .headcontents.active {
+        background-color: #fff;
+    }
+    .nav-menu a {
+        color: black;
+    }
+}
