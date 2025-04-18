@@ -11,3 +11,4 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>SMART HOUSE SYSTEM</title>
 </head>
+<script src="{{ asset('js/main.js') }}"></script>

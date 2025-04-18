@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  
+  .video-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  video {
+    width: 720px;
+    height: 560px;
+    border: 3px solid #444;
+    border-radius: 10px;
+    background: black;
+  }
+  
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  #status {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #007bff;
+  }
+  
+  .log-section {
+    margin-top: 30px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  
+  #log {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ccc;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  #log hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px dashed #ccc;
+  }
+  .skip {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #007bff;     /* primary blue */
+    color: #fff;                    /* white text */
+    border: none;
+    border-radius: 0.25rem;         /* 4px rounding */
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+  }
+  
+  .skip:hover {
+    background-color: #0056b3;      /* darker on hover */
+  }
+  
+  .skip:active {
+    background-color: #004080;      /* even darker on click */
+    transform: scale(0.98);         /* subtle “press” effect */
+  }
+  
+  .skip:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+    

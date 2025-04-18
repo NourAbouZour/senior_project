@@ -16,11 +16,11 @@
                 <li><a href="{{ route('products') }}">Products</a></li>
                 <li><a href="{{ route('aboutus') }}">About Us</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                <li><a href="{{ url('functions') }}">Functions</a></li>
+                <li><a href="{{ url('face_detection') }}">Functions</a></li>
             </ul>
             <ul class="headercontentslogo">
                 <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="/face_detection"><i class="fa-solid fa-user"></i></a></li>
             </ul>
         </nav>
     </div>

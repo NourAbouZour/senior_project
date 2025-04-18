@@ -95,4 +95,51 @@
       margin: 20px;
     }
   }
+  /* Base styling for the dropdown */
+select#country {
+  width: 100%;
+  max-width: 400px;       /* keeps it from growing too wide */
+  padding: 0.5rem 1rem;   /* space inside */
+  margin: 0.5rem 0 1rem;  /* spacing around */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23666' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.65rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  appearance: none;       /* remove native arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+/* Hover state */
+select#country:hover {
+  border-color: #888;
+}
+
+/* Focus state */
+select#country:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Style for the options (fallback in most browsers) */
+select#country option {
+  padding: 0.5rem;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Disabled “Select your country” placeholder */
+select#country option[disabled] {
+  color: #999;
+}
+
   

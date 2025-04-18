@@ -112,7 +112,7 @@ header.scrolled a {
 
 @media (max-width: 768px) {
     .hamburger {
-        display: flex;
+        display: flex !important;
         z-index: 1002;
         /* above the nav overlay */
     }
@@ -144,14 +144,10 @@ header.scrolled a {
     .nav-menu li {
         margin: 10px 0;
     }
-    /* Hide normal header navigation (the inline one) */
     .headercontents {
         display: none;
     }
-    /*
-      If you want the header area (logo + hamburger) itself 
-      to always be white on mobile, you can do:
-    */
+    
     .headcontents {
         width: 100%;
         background-color: transparent;
@@ -160,10 +156,7 @@ header.scrolled a {
         z-index: 1003;
         /* on top of the overlay */
     }
-    /*
-      When the hamburger is active, turn headcontents white as well
-      so that the top portion with the logo/hamburger is also white
-    */
+
     .headcontents.active {
         background-color: #fff;
     }

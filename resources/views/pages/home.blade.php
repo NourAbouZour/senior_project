@@ -4,8 +4,6 @@
 
 <body>
     @include('partials.header')
-
-    <!-- Home Page Widgets -->
     @include('widgets.slider')
     @include('widgets.services')
     @include('widgets.about-us')
@@ -15,6 +13,5 @@
 
     @include('partials.footer')
 
-    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
