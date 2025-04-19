@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/loginstyle.css') }}">
 @section('content')
   <div class="form-container">
     <h2>Smart House Signup</h2>

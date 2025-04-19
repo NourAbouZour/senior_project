@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BundleController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SmartHouseController;
 use App\Http\Controllers\FaceDetectionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\FrameController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -44,6 +46,16 @@ Route::get('/face_detection', [FaceDetectionController::class, 'index'])
      Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 Route::post('/register',[RegisterController::class, 'store']);
+
+Route::get('/bundles', [BundleController::class, 'index'])
+     ->name('bundles');
+
+     Route::view('/record', 'pages.record')
+     ->name('frames.record');
+
+Route::post('/upload-frames', [FrameController::class, 'store'])
+     ->name('frames.upload');
+
 
 
 
