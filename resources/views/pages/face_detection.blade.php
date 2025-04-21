@@ -18,7 +18,7 @@
       <video id="video" width="720" height="560" autoplay muted></video>
     </div>
 
-    <p id="status">🔄 Loading models...</p>
+    <p id="status"> Loading models...</p>
     <button
   class="skip"
   onclick="window.location.href='{{ route('login') }}';"
@@ -29,7 +29,7 @@
 
     <div class="log-section">
       <h2>📝 Login Attempts</h2>
-      <div id="log"></div>
+      <div id="log"></div> 
     </div>
   </div>
 </body>

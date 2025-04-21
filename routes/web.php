@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SmartHouseController;
 use App\Http\Controllers\FaceDetectionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LabelController;
 use App\Http\Controllers\FrameController;
 Route::get('/', function () {
     return view('welcome');
@@ -50,11 +51,21 @@ Route::post('/register',[RegisterController::class, 'store']);
 Route::get('/bundles', [BundleController::class, 'index'])
      ->name('bundles');
 
-     Route::view('/record', 'pages.record')
-     ->name('frames.record');
+// shows the camera‐capture page at /record
+Route::view('/record', 'pages.record')->name('frames.record');
 
-Route::post('/upload-frames', [FrameController::class, 'store'])
+// handles the POST of the 10 frames
+Route::post('/upload-frames', [App\Http\Controllers\FrameController::class, 'store'])
      ->name('frames.upload');
+
+
+
+     // (duplicate of the API route, but in web.php so it definitely registers)
+     Route::get('/api/labels', [LabelController::class, 'index']);
+     
+
+
+
 
 
 
