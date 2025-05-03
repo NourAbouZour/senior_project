@@ -26,6 +26,7 @@ header .headercontents {
   .about-image img {
     max-width: 100%;
     display: block;
+    padding: 22px;
   }
   
   /* Header Section */
@@ -105,10 +106,13 @@ header .headercontents {
   .about-content h2 {
     font-size: 2em;
     margin-bottom: 20px;
+    margin-left: 20px;
   }
   .about-content p {
     margin-bottom: 15px;
     text-align: justify;
+    line-height: 37px;
+    padding: 25px;
   }
   .about-image {
     flex: 1;
@@ -143,8 +147,10 @@ header .headercontents {
     transform: translateY(-5px);
   }
   .team-member img {
-    border-radius: 50%;
+    border-radius: 30%;
     margin-bottom: 15px;
+    width: 150px;
+    height: auto;
   }
   .team-member h3 {
     font-size: 1.2em;

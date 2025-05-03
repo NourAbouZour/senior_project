@@ -78,3 +78,43 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
+
+// tooglefilter
+document.addEventListener('DOMContentLoaded', () => {
+    const applyBtn   = document.getElementById('applyFilter');
+    const checkboxes = document.querySelectorAll('.filter input[type=checkbox]');
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
+    const cards      = document.querySelectorAll('.product-card');
+  
+    // keep the price label in sync
+    priceRange.addEventListener('input', () => {
+      priceValue.textContent = priceRange.value;
+    });
+  
+    applyBtn.addEventListener('click', () => {
+      // 1) which categories are checked?
+      const pickedCats = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.id);
+  
+      // 2) what's the maximum price?
+      const maxPrice = parseFloat(priceRange.value);
+  
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category') || '';
+        // grab the numeric price (e.g. "5$" → 5)
+        const priceText = card.querySelector('.price').textContent;
+        const price = parseFloat(priceText.replace('$','').trim());
+  
+        // 3) match both category AND price
+        const catMatch   = pickedCats.includes('all') || pickedCats.includes(cat);
+        const priceMatch = price <= maxPrice;
+  
+        // 4) show or hide
+        card.style.display = (catMatch && priceMatch) ? '' : 'none';
+      });
+    });
+  });
+  
+  

@@ -1,6 +1,6 @@
 <header>
     <div class="headcontents">
-        <img src="{{ asset('images/logo2.webp') }}" alt="Logo" class="logo" />
+        <img src="{{ asset('images/logo2.png') }}" alt="Logo" class="logo" />
 
         <!-- Hamburger Icon -->
         <div class="hamburger" onclick="toggleMenu()">

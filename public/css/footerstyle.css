@@ -22,12 +22,15 @@
  
  .newsletter {
      flex: 1.5;
-     padding-right: 40px;
+     padding: 40px;
  }
- 
+ .payment-icons{
+    padding-bottom: 10px;
+ }
  .newsletter h2 {
      font-size: 16px;
      font-weight: bold;
+     color: white;
  }
  
  .footer-content .newsletter form {
@@ -45,10 +48,17 @@
  }
  
  .footer-content button {
-     background: none;
-     border: none;
-     font-size: 18px;
+     margin-left: 10px;
+     font-size: 13px;
      cursor: pointer;
+     margin-bottom: 10px;
+     margin-top: 15px;
+     background-color: #2980b9;
+     color: #fff;
+     padding: 10px 20px;
+     border: none;
+     border-radius: 25px;
+     transition: background-color 0.3s ease;
  }
  
  .menu,
@@ -59,13 +69,15 @@
  .menu h3,
  .support h3 {
      font-size: 16px;
-     margin-bottom: 10px;
+     margin: 20px 0px;
+     
  }
  
  .menu ul,
  .support ul {
      list-style: none;
      padding: 0;
+     line-height: 20px;
  }
  
  .menu ul li,
@@ -107,11 +119,17 @@
          text-align: center;
      }
      .newsletter {
-         padding-right: 0;
-         margin-bottom: 20px;
+         padding-right: 40px;
+        
      }
      .menu,
      .support {
          text-align: center;
+         margin-bottom: 15px;
+     }
+     
+     .menu h3,
+     .support h3 {
+        padding: 0px !important;
      }
  }
