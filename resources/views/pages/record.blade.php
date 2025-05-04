@@ -42,6 +42,7 @@
     var country  = params.get('country')  || '';
 
     var stream, intervalId, frames = [];
+    var TARGET_W = 320;    // <<-- new: downscale width
 
     // 1) START RECORDING
     recordBtn.addEventListener('click', async function() {
@@ -69,11 +70,15 @@
           count      = 0;
 
       intervalId = setInterval(function() {
+        // draw smaller image
         var canvas = document.createElement('canvas');
-        canvas.width  = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        var dataUrl = canvas.toDataURL('image/png');
+        var ratio  = video.videoHeight / video.videoWidth;
+        canvas.width  = TARGET_W;
+        canvas.height = Math.round(TARGET_W * ratio);
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // export as JPEG (70% quality)
+        var dataUrl = canvas.toDataURL('image/jpeg', 0.7);
         frames.push(dataUrl);
 
         var img = document.createElement('img');
@@ -118,7 +123,7 @@
         var ct = res.headers.get('content-type') || '';
         if (!ct.includes('application/json')) {
           var html = await res.text();
-          console.error('🛑 Non‑JSON response:', html);
+          console.error('🛑 Non-JSON response:', html);
           throw new Error('Server error (see console)');
         }
 

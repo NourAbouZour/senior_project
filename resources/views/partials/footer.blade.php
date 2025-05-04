@@ -44,10 +44,11 @@
                 <img src="{{ asset('images/visa.png') }}" alt="Visa">
             </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
+  <a href="#"><i class="fab fa-instagram" style="color:white;"></i></a>
+  <a href="#"><i class="fab fa-twitter"   style="color:white;"></i></a>
+  <a href="#"><i class="fab fa-facebook-f" style="color:white;"></i></a>
+</div>
+
         </div>
     </div>
 </footer>

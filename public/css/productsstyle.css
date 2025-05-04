@@ -44,7 +44,7 @@ header .headercontents {
 .filter .filterbutton{
     margin: 10px;
     margin-left: 33px;
-    background-color: #0fc9e7;
+    background-color: #2980b9;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -151,7 +151,7 @@ h2 {
 }
 
 .product-card button {
-    background-color: #0fc9e7;
+    background-color: #2980b9;
     color: white;
     border: none;
     border-radius: 20px;

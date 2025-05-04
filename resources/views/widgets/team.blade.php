@@ -7,9 +7,9 @@
             <p>Hardware & Website Developer</p>
         </div>
         <div class="team-member">
-            <img src="{{ asset('images/visa.png') }}" alt="Mohamad Atwi">
+            <img src="{{ asset('images/atwi.jpeg') }}" alt="Mohamad Atwi">
             <h3>Mohamad Atwi</h3>
-            <p>Hardware Developer</p>
+            <p>Hardware Developer & Architect</p>
         </div>
         <div class="team-member">
             <img src="{{ asset('images/daaboul.jpeg') }}" alt="Mohamad Daaboul">

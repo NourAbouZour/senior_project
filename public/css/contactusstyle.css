@@ -30,7 +30,7 @@ header .headercontents {
   
   /* Left Panel: Contact Info */
   .contact-info {
-    background: #6c63ff;
+    background: #2980b9;
     color: #fff;
     padding: 40px;
     flex: 1;
@@ -69,7 +69,7 @@ header .headercontents {
   .contact-form h2 {
     margin-bottom: 20px;
     font-size: 2em;
-    color: #6c63ff;
+    color: #2980b9;
   }
   .contact-form form {
     display: grid;
@@ -99,7 +99,7 @@ header .headercontents {
     border-color: #6c63ff;
   }
   .contact-form button {
-    background: #6c63ff;
+    background: #2980b9;
     color: #fff;
     border: none;
     padding: 15px;

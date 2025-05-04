@@ -97,7 +97,7 @@ body {
   
   .detail i {
     font-size: 1.5rem;
-    color: #2980b9;
+    color: #2980b9 !important;
   }
   
   .detail h4 {

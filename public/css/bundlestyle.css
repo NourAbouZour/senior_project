@@ -6,7 +6,7 @@
   }
   body {
     font-family: Arial, sans-serif;
-    background: #007bff;
+    background: #2980b9;
     color: #333;
   }
   header {
@@ -82,7 +82,7 @@ header .headercontents {
   .bundle-card button {
     padding: 10px 15px;
     border: none;
-    background: #007bff;
+    background: #2980b9;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -127,12 +127,11 @@ label {
     background: #ddd;
   }
   
-  /* checked state */
+
   label input:checked + .checkmark {
-    background: #007bff;
+    background: green;
   }
   
-  /* tick (hidden by default) */
   label .checkmark::after {
     content: "";
     position: absolute;

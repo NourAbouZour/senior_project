@@ -93,3 +93,9 @@ body {
 .rating-stars .star.selected {
     color: yellow;
 }
+@media (max-width: 900px){
+.product-detail-container {
+display: flex;
+flex-direction: column;
+    }
+}
