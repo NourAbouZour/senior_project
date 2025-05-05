@@ -1,3 +1,26 @@
+<div id="cart-icon" title="View Cart">
+  <i class="fa fa-shopping-cart"></i>
+  <span id="cart-count">0</span>
+</div>
+
+<div id="cart-overlay">
+  <span id="close-cart">&times;</span>
+  <h2>Your Cart</h2>
+  <table id="cart-items">
+    <thead>
+      <tr><th>Product</th><th>Price</th><th>Qty</th></tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td id="cart-total">0.00$</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+  <button id="checkout-button">Checkout</button>
+</div>
 <div class="product-grid">
     <!-- Microcontrollers & Modules -->
     <div class="product-card" data-category="microcontroller">
@@ -13,8 +36,9 @@
             <div class="price-button">
                 <span class="price">5$</span>
                 <a href="{{ route('product.detail') }}?id=1">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -32,8 +56,9 @@
             <div class="price-button">
                 <span class="price">8$</span>
                 <a href="{{ route('product.detail') }}?id=5">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -51,8 +76,9 @@
             <div class="price-button">
                 <span class="price">6$</span>
                 <a href="{{ route('product.detail') }}?id=2">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -69,8 +95,9 @@
             <div class="price-button">
                 <span class="price">2$</span>
                 <a href="{{ route('product.detail') }}?id=11">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -88,8 +115,9 @@
             <div class="price-button">
                 <span class="price">2$</span>
                 <a href="{{ route('product.detail') }}?id=3">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -106,8 +134,9 @@
             <div class="price-button">
                 <span class="price">2$</span>
                 <a href="{{ route('product.detail') }}?id=9">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -125,8 +154,9 @@
             <div class="price-button">
                 <span class="price">7$</span>
                 <a href="{{ route('product.detail') }}?id=14">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -144,8 +174,9 @@
             <div class="price-button">
                 <span class="price">4$</span>
                 <a href="{{ route('product.detail') }}?id=12">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -164,8 +195,9 @@
             <div class="price-button">
                 <span class="price">5$</span>
                 <a href="{{ route('product.detail') }}?id=7">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -183,8 +215,9 @@
             <div class="price-button">
                 <span class="price">2$</span>
                 <a href="{{ route('product.detail') }}?id=10">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -202,8 +235,9 @@
             <div class="price-button">
                 <span class="price">7$</span>
                 <a href="{{ route('product.detail') }}?id=13">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -222,8 +256,9 @@
             <div class="price-button">
                 <span class="price">10$</span>
                 <a href="{{ route('product.detail') }}?id=6">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -241,8 +276,9 @@
             <div class="price-button">
                 <span class="price">7$</span>
                 <a href="{{ route('product.detail') }}?id=15">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -261,8 +297,9 @@
             <div class="price-button">
                 <span class="price">12$</span>
                 <a href="{{ route('product.detail') }}?id=4">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
@@ -280,9 +317,99 @@
             <div class="price-button">
                 <span class="price">2$</span>
                 <a href="{{ route('product.detail') }}?id=8">
-                    <button class="buy-button">BUY NOW</button>
+                    <button class="productdesc">More Info</button>
                 </a>
+                <button class="buy-button"><a>Buy Now</a></button>
             </div>
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cartIcon    = document.getElementById('cart-icon');
+  const closeCart   = document.getElementById('close-cart');
+  const cartOverlay = document.getElementById('cart-overlay');
+  const cartBody    = document.querySelector('#cart-items tbody');
+  const totalDisplay= document.getElementById('cart-total');
+  const countBadge  = document.getElementById('cart-count');
+  const checkoutBtn = document.getElementById('checkout-button');
+
+  let cart = [];
+
+  function renderCart() {
+    cartBody.innerHTML = '';
+    let total = 0;
+    let itemCount = 0;
+
+    cart.forEach(item => {
+      const lineTotal = item.price * item.quantity;
+      total += lineTotal;
+      itemCount += item.quantity;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.name}</td>
+        <td>${lineTotal.toFixed(2)}$</td>
+        <td>
+          <button class="qty-decrease" data-name="${item.name}">–</button>
+          ${item.quantity}
+          <button class="qty-increase" data-name="${item.name}">+</button>
+        </td>
+      `;
+      cartBody.appendChild(tr);
+    });
+
+    // update totals
+    totalDisplay.innerText = total.toFixed(2) + '$';
+    countBadge.innerText   = itemCount;
+  }
+
+  function addToCart(name, price) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) existing.quantity += 1;
+    else cart.push({ name, price, quantity: 1 });
+    renderCart();
+    cartOverlay.classList.add('active');
+  }
+
+  // Delegate +/- clicks
+  cartBody.addEventListener('click', e => {
+    const name = e.target.dataset.name;
+    if (!name) return;
+    const item = cart.find(i => i.name === name);
+    if (!item) return;
+
+    if (e.target.matches('.qty-increase')) item.quantity += 1;
+    else if (e.target.matches('.qty-decrease')) {
+      item.quantity -= 1;
+      if (item.quantity <= 0) cart = cart.filter(i => i.name !== name);
+    }
+    renderCart();
+  });
+
+  // toggle overlay
+  cartIcon.addEventListener('click', () =>
+    cartOverlay.classList.toggle('active')
+  );
+  closeCart.addEventListener('click', () =>
+    cartOverlay.classList.remove('active')
+  );
+
+  // Buy Now buttons
+  document.querySelectorAll('.buy-button').forEach(btn =>
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const card = e.currentTarget.closest('.product-card');
+      const name = card.querySelector('h2').innerText.trim();
+      const priceText = card.querySelector('.price').innerText;
+      const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+      addToCart(name, price);
+    })
+  );
+
+  // checkout stub
+  checkoutBtn.addEventListener('click', () => {
+    alert(`Proceeding to checkout. Total is ${totalDisplay.innerText}`);
+  });
+});
+</script>
