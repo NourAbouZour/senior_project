@@ -30,7 +30,6 @@
                 <ul>
                     <li><a href="#">Certifications</a></li>
                     <li><a href="#">Live Chat</a></li>
-                    <li><a href="#">Chatbot</a></li>
                     <li><a href="#">Leave a Review</a></li>
                 </ul>
             </div>
@@ -52,3 +51,5 @@
         </div>
     </div>
 </footer>
+<script> window.chtlConfig = { chatbotId: "6239643688" } </script>
+<script async data-id="6239643688" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
