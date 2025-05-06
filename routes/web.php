@@ -20,26 +20,23 @@ Route::get('/', function () {
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
 // Static pages
-Route::get('/aboutus', function () {
-    return view('pages.aboutus');
-})->name('aboutus');
+Route::get('/aboutus', fn() => view('pages.aboutus'))->name('aboutus');
+Route::get('/contactus', fn() => view('pages.contact'))->name('contact');
+Route::get('/productdesc', fn() => view('pages.product-detail'))->name('product.detail');
 
-Route::get('/contactus', function () {
-    return view('pages.contact');
-})->name('contact');
-
-Route::get('/productdesc', function () {
-    return view('pages.product-detail');
-})->name('product.detail');
-
-// Smart house functions
+// Smart house functions (protected—check session in your controller)
 Route::get('/functions', [SmartHouseController::class, 'index'])->name('functions');
 
-// Face detection
+// Face detection signup/signin
 Route::get('/face_detection', [FaceDetectionController::class, 'index'])->name('face_detection');
 
-// Login and register
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login.form');
+// Handle the POST
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+
+// register page & store
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 

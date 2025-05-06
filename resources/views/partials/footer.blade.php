@@ -43,9 +43,9 @@
                 <img src="{{ asset('images/visa.png') }}" alt="Visa">
             </div>
             <div class="social-icons">
-  <a href="#"><i class="fab fa-instagram" style="color:white;"></i></a>
-  <a href="#"><i class="fab fa-twitter"   style="color:white;"></i></a>
-  <a href="#"><i class="fab fa-facebook-f" style="color:white;"></i></a>
+  <a href="https://www.instagram.com/smart_house_system?igsh=dHB1cW0xdjdhYTkw"><i class="fab fa-instagram" style="color:white;"></i></a>
+  <a href="https://x.com/smart_house1?s=21"><i class="fab fa-twitter"   style="color:white;"></i></a>
+  <a href="https://www.facebook.com/share/1Be7axpJg3/"><i class="fab fa-facebook-f" style="color:white;"></i></a>
 </div>
 
         </div>

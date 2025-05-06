@@ -19,8 +19,8 @@
                 <li><a href="{{ url('bundles') }}">Functions</a></li>
             </ul>
             <ul class="headercontentslogo">
-                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="/face_detection"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+                <li><a href="/login"><i class="fa-solid fa-user"></i></a></li>
             </ul>
         </nav>
     </div>

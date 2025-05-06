@@ -29,5 +29,4 @@
     </div>
 
     <button onclick="goBack()">Back</button>
-    <button onclick="addToCart()">Add to Cart</button>
 </div>
