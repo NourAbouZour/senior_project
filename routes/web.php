@@ -1,26 +1,25 @@
 <?php
 
-use App\Http\Controllers\BundleController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SmartHouseController;
 use App\Http\Controllers\FaceDetectionController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\BundleController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\FrameController;
-Route::get('/', function () {
-    return view('welcome');
-});
 
-
+// Homepage
 Route::get('/', function () {
     return view('pages.home');
 });
 
+// Products
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
+// Static pages
 Route::get('/aboutus', function () {
     return view('pages.aboutus');
 })->name('aboutus');
@@ -33,44 +32,23 @@ Route::get('/productdesc', function () {
     return view('pages.product-detail');
 })->name('product.detail');
 
+// Smart house functions
 Route::get('/functions', [SmartHouseController::class, 'index'])->name('functions');
 
+// Face detection
+Route::get('/face_detection', [FaceDetectionController::class, 'index'])->name('face_detection');
 
+// Login and register
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
-Route::get('/face_detection', [FaceDetectionController::class, 'index'])
-     ->name('face_detection');
+// Bundles
+Route::get('/bundles', [BundleController::class, 'index'])->name('bundles');
 
-
-     Route::get('/login', [LoginController::class, 'index'])
-     ->name('login');
-     
-     Route::get('/register', [RegisterController::class, 'index'])->name('register');
-
-Route::post('/register',[RegisterController::class, 'store']);
-
-Route::get('/bundles', [BundleController::class, 'index'])
-     ->name('bundles');
-
-// shows the camera‐capture page at /record
+// Camera capture (face signup)
 Route::view('/record', 'pages.record')->name('frames.record');
+Route::post('/upload-frames', [FrameController::class, 'store'])->name('frames.upload');
 
-// handles the POST of the 10 frames
-Route::post('/upload-frames', [App\Http\Controllers\FrameController::class, 'store'])
-     ->name('frames.upload');
-
-
-
-     // (duplicate of the API route, but in web.php so it definitely registers)
-     Route::get('/api/labels', [LabelController::class, 'index']);
-     
-
-
-
-
-
-
-
-
-
-
-
+// API for labels
+Route::get('/api/labels', [LabelController::class, 'index']);

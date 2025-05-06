@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Monarobase\CountryList\CountryListFacade as Countries;
 
 class RegisterController extends Controller
@@ -14,10 +15,8 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        // Retrieve an associative array of countries: ['AF' => 'Afghanistan', ...]
-        $countries = Countries::getList('en','php');
-    return view('widgets.auth-widget', compact('countries'));
-
+        $countries = Countries::getList('en', 'php');
+        return view('widgets.auth-widget', compact('countries'));
     }
 
     /**
@@ -25,25 +24,33 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the incoming request data
+        // Step 1: Log the raw input
+        \Log::info('Raw input:', $request->all());
+    
+        // Step 2: Validate input
         $data = $request->validate([
-            'username'              => 'required|string|max:255',
-            'email'                 => 'required|email|unique:users,email',
-            'country'               => 'required|string|max:255',
-            'password'              => 'required|confirmed|min:8',
+            'username' => 'required|string|max:255',
+            'email'    => 'required|email|unique:userinfo,email',
+            'country'  => 'required|string|max:255',
+            'password' => 'required|confirmed|min:8',
         ]);
-
-        // Create the new user
-        User::create([
-            'name'      => $data['username'],
-            'email'     => $data['email'],
-            'country'   => $data['country'],
-            'password'  => Hash::make($data['password']),
+    
+        // Step 3: Log validated data
+        \Log::info('Validated input:', $data);
+    
+        // Step 4: Try insert
+        $user = UserInfo::create([
+            'name'     => $data['username'],
+            'email'    => $data['email'],
+            'address'  => $data['country'],
+            'password' => \Hash::make($data['password']),
         ]);
-
-        // Redirect to login with a success message
+    
+        \Log::info('User created ID:', [$user->id ?? 'not set']);
+    
         return redirect()
-               ->route('login')
-               ->with('status', 'Account created! Please log in.');
+            ->route('login')
+            ->with('status', 'Account created! Please log in.');
     }
+    
 }

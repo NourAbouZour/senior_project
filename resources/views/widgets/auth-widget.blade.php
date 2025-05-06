@@ -1,113 +1,161 @@
-<div class="form-container">
-  <div class="form-toggle">
-    <button id="login-toggle" class="active">Login</button>
-    <button id="signup-toggle">Signup</button>
-  </div>
-  <div class="form-content">
-    <!-- Login Widget -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Smart House Login / Signup</title>
+  <link rel="stylesheet" href="{{ asset('css/loginstyle.css') }}">
+  <style>
+    /* simple checkmark styling */
+    .checkmark {
+      color: #28a745;
+      margin-left: 0.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    {{-- Toggle buttons --}}
+    <div class="form-toggle">
+      <button id="login-toggle" class="active">Login</button>
+      <button id="signup-toggle">Signup</button>
+    </div>
+
+    {{-- Login Widget --}}
     <div id="login-widget" class="auth-widget active">
-      <form id="login-form" class="form" method="POST" action="{{ route('login') }}">
+      @if ($errors->any() && session('form') === 'login')
+        <div class="error-box">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      <form id="login-form" method="POST" action="{{ route('login') }}">
         @csrf
         <h2>Smart House Login</h2>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <a class="facedetectionoption" href="face_detection">Use Face Detection</a>
+
+        <input
+          id="li-username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          value="{{ old('username', request('username')) }}"
+          required
+        >
+
+        <input
+          id="li-password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        >
+
+        <p class="face-text">
+          <a href="{{ route('face_detection') }}" class="facedetectionoption">
+            Sign in using Face Recognition
+          </a>
+        </p>
+
         <button type="submit">Login</button>
       </form>
     </div>
 
-    <!-- Signup Widget -->
+    {{-- Signup Widget --}}
+    @php
+      // preserve what the user typed or what came back via query string
+      $username = old('username', request('username'));
+      $email    = old('email',    request('email'));
+      $country  = old('country',  request('country'));
+      // build query string for the face-detection roundtrip
+      $qs = http_build_query([
+        'username' => $username,
+        'email'    => $email,
+        'country'  => $country,
+      ]);
+    @endphp
+
     <div id="signup-widget" class="auth-widget">
-      <form id="signup-form" class="form" method="POST" action="{{ route('register') }}">
+      @if ($errors->any() && session('form') === 'register')
+        <div class="error-box">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      <form id="signup-form" method="POST" action="{{ route('register') }}">
         @csrf
         <h2>Smart House Signup</h2>
 
-        <input id="su-username" type="text" name="username" placeholder="Username" required>
-        <input id="su-email"    type="email" name="email"    placeholder="Email"    required>
+        <input
+          id="su-username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          value="{{ $username }}"
+          required
+        >
 
-        {{-- Country dropdown --}}
+        <input
+          id="su-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+          value="{{ $email }}"
+          required
+        >
+
         <select id="su-country" name="country" required>
-          <option value="" disabled selected>Select your country</option>
+          <option value="" disabled {{ $country ? '' : 'selected' }}>
+            Select your country
+          </option>
           @foreach($countries as $code => $name)
-            <option value="{{ $name }}">{{ $name }}</option>
+            <option value="{{ $name }}" {{ $country === $name ? 'selected' : '' }}>
+              {{ $name }}
+            </option>
           @endforeach
         </select>
 
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+        <input
+          id="su-password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        >
 
-        <a href="#" id="facesignup-btn" class="facesignupoption">
-          Signup Using Face Detection
+        <input
+          id="su-password_confirmation"
+          type="password"
+          name="password_confirmation"
+          placeholder="Confirm Password"
+          required
+        >
+
+        <a
+          href="{{ route('frames.record') }}?{{ $qs }}"
+          class="facesignupoption"
+        >
+          Signup Using Face Recognition
+          @if(request('faceDone') === '1')
+            <span class="checkmark">✔︎</span>
+          @endif
         </a>
+
         <button type="submit">Signup</button>
       </form>
     </div>
+
   </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Tab toggles
-  const loginToggle   = document.getElementById('login-toggle');
-  const signupToggle  = document.getElementById('signup-toggle');
-  const loginWidget   = document.getElementById('login-widget');
-  const signupWidget  = document.getElementById('signup-widget');
-
-  loginToggle.addEventListener('click', () => {
-    loginToggle.classList.add('active');
-    signupToggle.classList.remove('active');
-    loginWidget.classList.add('active');
-    signupWidget.classList.remove('active');
-  });
-  signupToggle.addEventListener('click', () => {
-    signupToggle.classList.add('active');
-    loginToggle.classList.remove('active');
-    signupWidget.classList.add('active');
-    loginWidget.classList.remove('active');
-  });
-
-  // Grab URL params once
-  const params   = new URLSearchParams(window.location.search);
-  const uParam   = params.get('username');
-  const eParam   = params.get('email');
-  const cParam   = params.get('country');
-  const doneFlag = params.get('faceDone');
-
-  // Pre‑fill signup fields if present
-  if (uParam) document.getElementById('su-username').value = uParam;
-  if (eParam) document.getElementById('su-email')   .value = eParam;
-  if (cParam) document.getElementById('su-country') .value = cParam;
-  if (doneFlag === '1') {
-    document.getElementById('facesignup-btn').textContent =
-      'Signup Using Face Detection ✔️';
-  }
-
-  // Clear query so refresh starts fresh
-  if ([...params].length) {
-    history.replaceState(null, '', location.pathname);
-  }
-
-  // Password match validation
-  document.getElementById('signup-form').addEventListener('submit', e => {
-    const f = e.target;
-    if (f.password.value !== f.password_confirmation.value) {
-      e.preventDefault();
-      alert('Passwords do not match.');
-    }
-  });
-
-  // “Signup Using Face Detection” click
-  document.getElementById('facesignup-btn').addEventListener('click', e => {
-    e.preventDefault();
-    const u = document.getElementById('su-username').value.trim();
-    const m = document.getElementById('su-email')   .value.trim();
-    const c = document.getElementById('su-country') .value;
-    if (!u) return alert('Please enter a username first.');
-    if (!c) return alert('Please select your country first.');
-
-    // Redirect with all three fields
-    const qs = new URLSearchParams({ username: u, email: m, country: c }).toString();
-    window.location.href = "{{ route('frames.record') }}?" + qs;
-  });
-});
-</script>
+  <script src="{{ asset('js/loginscript.js') }}"></script>
+</body>
+</html>

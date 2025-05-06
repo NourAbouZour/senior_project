@@ -28,25 +28,32 @@
   document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Record page loaded');
 
-    var video     = document.getElementById('preview');
-    var recordBtn = document.getElementById('record-btn');
-    var backBtn   = document.getElementById('back-btn');
-    var uploadBtn = document.getElementById('upload-btn');
-    var status    = document.getElementById('status');
-    var thumbs    = document.getElementById('thumbnails');
-    var token     = document.querySelector('meta[name="csrf-token"]').content;
+    const video     = document.getElementById('preview');
+    const recordBtn = document.getElementById('record-btn');
+    const backBtn   = document.getElementById('back-btn');
+    const uploadBtn = document.getElementById('upload-btn');
+    const status    = document.getElementById('status');
+    const thumbs    = document.getElementById('thumbnails');
+    const token     = document.querySelector('meta[name="csrf-token"]').content;
 
-    var params   = new URLSearchParams(window.location.search);
-    var username = params.get('username') || 'unknown_user';
-    var email    = params.get('email')    || '';
-    var country  = params.get('country')  || '';
+    const params = new URLSearchParams(window.location.search);
 
-    var stream, intervalId, frames = [];
-    var TARGET_W = 320;    // <<-- new: downscale width
+    // ←—— Here’s the change: prefer URL params, then sessionStorage
+    const username = params.get('username')
+                      || sessionStorage.getItem('su-username')
+                      || 'unknown_user';
+    const email   = params.get('email')
+                      || sessionStorage.getItem('su-email')
+                      || '';
+    const country = params.get('country')
+                      || sessionStorage.getItem('su-country')
+                      || '';
+
+    let stream, intervalId, frames = [];
+    const TARGET_W = 320;
 
     // 1) START RECORDING
-    recordBtn.addEventListener('click', async function() {
-      console.log('▶ recordBtn clicked');
+    recordBtn.addEventListener('click', async () => {
       recordBtn.disabled = true;
       status.textContent = 'Starting camera…';
       try {
@@ -54,7 +61,6 @@
         video.srcObject = stream;
         await video.play();
       } catch (err) {
-        console.error('❌ getUserMedia error:', err);
         status.textContent = 'Camera error: ' + err.message;
         recordBtn.disabled = false;
         return;
@@ -65,23 +71,18 @@
       thumbs.innerHTML = '';
       backBtn.style.display = uploadBtn.style.display = 'none';
 
-      var total      = 10,
-          intervalMs = 4000 / total,
-          count      = 0;
-
-      intervalId = setInterval(function() {
-        // draw smaller image
-        var canvas = document.createElement('canvas');
-        var ratio  = video.videoHeight / video.videoWidth;
+      let count = 0, total = 10, intervalMs = 4000 / total;
+      intervalId = setInterval(() => {
+        const canvas = document.createElement('canvas');
+        const ratio  = video.videoHeight / video.videoWidth;
         canvas.width  = TARGET_W;
         canvas.height = Math.round(TARGET_W * ratio);
         canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        // export as JPEG (70% quality)
-        var dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
         frames.push(dataUrl);
 
-        var img = document.createElement('img');
+        const img = document.createElement('img');
         img.src = dataUrl;
         thumbs.appendChild(img);
 
@@ -89,28 +90,27 @@
           clearInterval(intervalId);
           status.textContent = 'Captured all frames!';
           backBtn.style.display = uploadBtn.style.display = 'inline-block';
-          stream.getTracks().forEach(function(t){ t.stop(); });
+          stream.getTracks().forEach(t => t.stop());
         }
       }, intervalMs);
     });
 
     // 2) BACK
-    backBtn.addEventListener('click', function() {
-      console.log('↩ backBtn clicked');
-      if (stream) stream.getTracks().forEach(function(t){ t.stop(); });
+    backBtn.addEventListener('click', () => {
+      if (stream) stream.getTracks().forEach(t => t.stop());
       status.textContent = 'Returning to signup in 5s…';
-      setTimeout(function() {
+      setTimeout(() => {
         window.location.href = "{{ route('login') }}?" +
           new URLSearchParams({ username, email, country }).toString();
       }, 5000);
     });
 
     // 3) UPLOAD
-    uploadBtn.addEventListener('click', async function() {
-      console.log('✅ uploadBtn clicked');
+    uploadBtn.addEventListener('click', async () => {
       status.textContent = 'Uploading…';
+
       try {
-        var res = await fetch("{{ route('frames.upload') }}", {
+        const res = await fetch("{{ route('frames.upload') }}", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -120,22 +120,21 @@
           body: JSON.stringify({ folderName: username, images: frames })
         });
 
-        var ct = res.headers.get('content-type') || '';
+        const ct = res.headers.get('content-type') || '';
         if (!ct.includes('application/json')) {
-          var html = await res.text();
-          console.error('🛑 Non-JSON response:', html);
-          throw new Error('Server error (see console)');
+          const html = await res.text();
+          throw new Error('Server returned non-JSON response');
         }
 
-        var data = await res.json();
-        console.log('✅ JSON response:', data);
-        if (!res.ok) throw new Error(data.message || JSON.stringify(data));
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Upload error');
 
         status.textContent = 'Upload complete! Redirecting in 5s…';
-        setTimeout(function() {
+        setTimeout(() => {
           window.location.href = "{{ route('login') }}?" +
             new URLSearchParams({ username, email, country, faceDone:'1' }).toString();
         }, 5000);
+
       } catch (err) {
         console.error('❌ Upload failed:', err);
         status.textContent = 'Upload failed: ' + err.message;

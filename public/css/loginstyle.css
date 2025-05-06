@@ -1,165 +1,148 @@
-/* Reset defaults */
+/* ─── RESET & BASE ───────────────────────────────────────────────────────── */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Body styling with a futuristic gradient background */
-  body {
-    background: linear-gradient(135deg, #0d47a1, #1976d2);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Container for the forms */
-  .container {
-    width: 100%;
-    max-width: 400px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
-  
-  /* Inner container for padding */
-  .form-container {
-    padding: 30px;
-  }
-  
-  /* Toggle buttons for switching forms */
-  .form-toggle {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-toggle button {
-    flex: 1;
-    padding: 10px;
-    background: #f1f1f1;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-weight: bold;
-  }
-  
-  .form-toggle button.active {
-    background: #1976d2;
-    color: #fff;
-  }
-  
-  /* Form styling */
-  .form-content form {
-    display: none;
-    flex-direction: column;
-  }
-  
-  .form-content form.active {
-    display: flex;
-  }
-  
-  .form-content form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #1976d2;
-  }
-  
-  .form-content form input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .form-content form button {
-    padding: 10px;
-    background: #1976d2;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .form-content form button:hover {
-    background: #0d47a1;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 500px) {
-    .container {
-      margin: 20px;
-    }
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-#su-country {
+/* ─── CONTAINER ──────────────────────────────────────────────────────────── */
+.container {
   width: 100%;
-  padding: 0.75rem 1rem;
+  max-width: 400px;
+  padding: 0 1rem;
+}
+
+/* ─── TOGGLE BUTTONS ─────────────────────────────────────────────────────── */
+.form-toggle {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.form-toggle button {
+  flex: 1;
+  padding: 0.75rem;
+  background: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.form-toggle button.active {
+  background: #1976d2;
+  color: #fff;
+}
+
+/* ─── AUTH WIDGETS ───────────────────────────────────────────────────────── */
+.auth-widget {
+  display: none;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+}
+.auth-widget.active {
+  display: block;
+}
+
+/* ─── ERROR BOX ──────────────────────────────────────────────────────────── */
+.error-box {
+  background: #fdecea;
+  border: 1px solid #f5c2c7;
+  border-radius: 5px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  color: #721c24;
+}
+.error-box ul {
+  list-style: disc inside;
+  padding-left: 1.2rem;
+}
+
+/* ─── FORM ELEMENTS ──────────────────────────────────────────────────────── */
+.auth-widget h2 {
+  text-align: center;
+  color: #1976d2;
+  margin-bottom: 1.5rem;
+}
+.auth-widget input,
+.auth-widget select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   font-size: 1rem;
   font-family: inherit;
-  color: grey;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 0.375rem;
-  /* hide native arrow */
+}
+.auth-widget button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.auth-widget button[type="submit"]:hover {
+  background: #0d47a1;
+}
+
+/* ─── CUSTOM DROPDOWN ARROW ───────────────────────────────────────────────── */
+#su-country {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  cursor: pointer;
-  /* create space for our custom arrow */
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 5L0 0h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
   background-position: right 1rem center;
-  background-repeat: no-repeat;
   background-size: 0.65em auto;
-  /* SVG arrow icon (dark gray) */
-  margin-bottom: 20px;
+  cursor: pointer;
   color: grey;
-  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 5L0 0h4z'/%3E%3C/svg%3E");
 }
 
-/* Optional: focus state */
-#su-country:focus {
-  outline: none;
-  border-color: #007BFF;
-  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
-}
-
-/* If you need a wrapper for more precise arrow positioning: */
-.select-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-.select-wrapper select {
-  /* inherit all the styles above, plus: */
-  padding-right: 2.5rem; /* room for the arrow */
-}
-.select-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  width: 0.65em;
-  height: 0.65em;
-  pointer-events: none;
-  transform: translateY(-50%);
-  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 5L0 0h4z'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.facedetectionoption{
+/* ─── FACE-DETECTION LINKS ───────────────────────────────────────────────── */
+.facedetectionoption,
+.facesignupoption {
+  display: block;
+  margin: 1rem 0;
   color: #007bff;
-  margin: 17px 0px;
   text-decoration: none;
+  font-size: 0.9rem;
 }
-.facesignupoption{
-  color: #007bff;
-  margin: 17px 0px;
-  text-decoration: none;
+.facedetectionoption:hover,
+.facesignupoption:hover {
+  text-decoration: underline;
 }
 
-  
+/* ─── EXTRA TEXT STYLING ────────────────────────────────────────────────── */
+.face-text {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
+@media (max-width: 500px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  .form-toggle button {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+}
