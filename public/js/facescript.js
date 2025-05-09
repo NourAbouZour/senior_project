@@ -1,12 +1,9 @@
 // public/js/facescript.js
 
 const video = document.getElementById('video');
-const loginLog = [];
-
 let loggedIn = false;
 let sessionLogged = false;
 
-// load models from public/models/...
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models/tiny_face_detector'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models/face_landmark_68'),
@@ -41,6 +38,11 @@ video.addEventListener('play', async () => {
   faceapi.matchDimensions(canvas, { width: video.videoWidth, height: video.videoHeight });
 
   const labeledDescriptors = await loadLabeledImages();
+  if (labeledDescriptors.length === 0) {
+    document.getElementById('status').textContent = '❌ No training images loaded!';
+    return;
+  }
+
   const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.5);
 
   setInterval(async () => {
@@ -49,23 +51,29 @@ video.addEventListener('play', async () => {
       .withFaceLandmarks()
       .withFaceDescriptors();
 
-    const results = faceapi.resizeResults(detections, { width: video.videoWidth, height: video.videoHeight });
+    const resized = faceapi.resizeResults(detections, {
+      width: video.videoWidth,
+      height: video.videoHeight
+    });
+
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    results.forEach(detection => {
-      const match = faceMatcher.findBestMatch(detection.descriptor);
+    for (const det of resized) {
+      const match = faceMatcher.findBestMatch(det.descriptor);
       const conf  = Math.round((1 - match.distance) * 100);
-      new faceapi.draw.DrawBox(detection.detection.box, {
+
+      new faceapi.draw.DrawBox(det.detection.box, {
         label: match.label !== 'unknown' ? `${match.label} (${conf}%)` : 'Unknown',
         boxColor: match.label !== 'unknown' ? 'green' : 'red',
         lineWidth: 2
       }).draw(canvas);
 
       if (match.label !== 'unknown' && !loggedIn && !sessionLogged) {
-        sessionLogged = loggedIn = true;
+        loggedIn = sessionLogged = true;
         const now = new Date().toLocaleString();
-        document.getElementById('status').textContent = `✅ Logged in as ${match.label} at ${now}`;
+        document.getElementById('status').textContent =
+          `✅ Logged in as ${match.label} at ${now}`;
         document.getElementById('log').innerHTML = `
           🕒 ${now}<br>
           🙎 ${match.label}<br>
@@ -73,39 +81,48 @@ video.addEventListener('play', async () => {
         `;
         setTimeout(() => window.location.href = '/functions', 2000);
       }
-    });
-
-    console.table(loginLog);
+    }
   }, 500);
 });
 
 async function loadLabeledImages() {
-  // 1) fetch dynamic labels
   const res = await fetch('/api/labels');
   if (!res.ok) throw new Error('Could not fetch label list');
   const labels = await res.json();
   console.log('🔖 Found labels:', labels);
 
-  // 2) for each label, try both jpg & png
-  return Promise.all(labels.map(async label => {
+  const outputs = [];
+  for (const label of labels) {
     const descriptors = [];
+
     for (let i = 1; i <= 10; i++) {
-      for (const ext of ['jpg','png']) {
+      // try each extension
+      for (const ext of ['jpg','jpeg','png']) {
+        const url = `/labeled_images/${label}/${i}.${ext}`;
         try {
-          const img = await faceapi.fetchImage(`/labeled_images/${label}/${i}.${ext}`);
+          const img = await faceapi.fetchImage(url);
           const det = await faceapi
             .detectSingleFace(img, new faceapi.TinyFaceDetectorOptions({ inputSize: 416 }))
             .withFaceLandmarks()
             .withFaceDescriptor();
-          if (!det) throw new Error('no face detected');
-          descriptors.push(det.descriptor);
-          break;        // once one format works, skip other ext
+          if (det && det.descriptor) {
+            descriptors.push(det.descriptor);
+            console.log(`✅ [${label}] loaded descriptor from ${i}.${ext}`);
+            break;  // got one, move on to next i
+          }
         } catch {
-          // ignore and try next extension
+          // failed to load or no face, try next extension
         }
       }
     }
-    console.log(`👤 ${label}: loaded ${descriptors.length} descriptors`);
-    return new faceapi.LabeledFaceDescriptors(label, descriptors);
-  }));
+
+    console.log(`👤 ${label}: ${descriptors.length} descriptors`);
+    if (descriptors.length > 0) {
+      outputs.push(new faceapi.LabeledFaceDescriptors(label, descriptors));
+    } else {
+      console.warn(`⚠️ No valid images found for "${label}", skipping.`);
+    }
+  }
+
+  return outputs;
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\FaceDetectionController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\FrameController;
+use App\Http\Controllers\CheckoutController;
 
 // Homepage
 Route::get('/', function () {
@@ -49,3 +50,17 @@ Route::post('/upload-frames', [FrameController::class, 'store'])->name('frames.u
 
 // API for labels
 Route::get('/api/labels', [LabelController::class, 'index']);
+
+
+
+Route::get('/checkout', [CheckoutController::class, 'index'])
+     ->name('checkout.index');
+
+Route::post('/checkout', [CheckoutController::class, 'store'])
+     ->name('checkout.store');
+// If you just need to return a view:
+Route::view('/terms', 'widgets.termsandconditions')
+     ->name('terms');
+
+
+
