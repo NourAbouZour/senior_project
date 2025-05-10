@@ -12,8 +12,8 @@
     </ul>
     <h3>Filter by Price</h3>
     <div class="money-filter">
-        <input type="range" min="0" max="10" value="10" id="priceRange">
-        <p>Price: $<span id="priceValue">10</span></p>
+        <input type="range" min="2" max="12" value="12" id="priceRange">
+        <p>Price: $<span id="priceValue">12</span></p>
     </div>
 
     <!-- (Optional) your Apply button -->

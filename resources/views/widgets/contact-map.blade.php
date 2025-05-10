@@ -25,14 +25,14 @@
                 <i class="fas fa-envelope"></i>
                 <div>
                     <h4>General Enquiries</h4>
-                    <p>austbrainbulb@gmail.com</p>
+                    <p>smarthousesystem123@gmail.com</p>
                 </div>
             </div>
             <div class="detail">
                 <i class="fas fa-phone-alt"></i>
                 <div>
                     <h4>Call Us</h4>
-                    <p>+961-111111</p>
+                    <p>+961-76075491</p>
                 </div>
             </div>
             <div class="detail">

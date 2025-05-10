@@ -11,6 +11,8 @@ use App\Http\Controllers\BundleController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\FrameController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsletterController;
 
 // Homepage
 Route::get('/', function () {
@@ -61,6 +63,19 @@ Route::post('/checkout', [CheckoutController::class, 'store'])
 // If you just need to return a view:
 Route::view('/terms', 'widgets.termsandconditions')
      ->name('terms');
+
+
+
+Route::post('/contact', [ContactController::class, 'store'])
+     ->name('contact.store');
+
+
+
+
+Route::post('/newsletter', [NewsletterController::class, 'store'])
+     ->name('newsletter.store');
+
+
 
 
 

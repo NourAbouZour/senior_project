@@ -12,7 +12,7 @@ class CheckoutController extends Controller
     {
         // get ['US'=>'United States', …]
         $countries = Countries::getList('en','php');
-        return view('widgets.checkout-form', compact('countries'));
+        return view('widgets.checkout-form', compact('countries'));  
     }
 
     // app/Http/Controllers/CheckoutController.php
@@ -36,7 +36,7 @@ public function store(Request $request)
         'cc_expiration' => 'nullable|required_if:payment_method,credit-card|regex:/^\d{2}\/\d{2}$/',
         'cc_cvc'        => 'nullable|required_if:payment_method,credit-card|digits:3',
 
-        'terms'          => 'accepted',
+        'terms'          => 'accepted', 
     ]);
 
     Order::create($data);
@@ -45,6 +45,5 @@ public function store(Request $request)
            ->route('checkout.index')
            ->with('success','Your order has been placed!');
 }
-
 }
 

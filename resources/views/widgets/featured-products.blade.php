@@ -36,4 +36,5 @@
         </div>
         <button class="carousel-btn next-btn">❯</button>
     </div>
+    <a href="{{ url('contactus') }}"><button>ENQUIRE A SYSTEM NOW</button></a>
 </section>

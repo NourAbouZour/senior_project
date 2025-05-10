@@ -84,7 +84,7 @@
 
     <section>
       <h2>11. Changes to These Terms</h2>
-      <p>We may revise these Terms from time to time. The version posted on the Site (with its “Last updated” date) is the one that applies to your purchase. Continued use of the Site after any changes constitutes acceptance of the new Terms.</p>
+      <p>We may revise these Terms from time to time. The version posted on the Site 5/9/2025 is the one that applies to your purchase. Continued use of the Site after any changes constitutes acceptance of the new Terms.</p>
     </section>
 
     <section>
@@ -132,6 +132,7 @@ body {
   padding: var(--spacing) var(--spacing) 2*var(--spacing);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 40px;
 }
 
 h1 {

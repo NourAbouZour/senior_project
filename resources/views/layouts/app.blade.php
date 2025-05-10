@@ -7,8 +7,6 @@
   
   <!-- main CSS -->
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  
-  <!-- pushed styles from widgets -->
   @stack('styles')
 </head>
 <body>

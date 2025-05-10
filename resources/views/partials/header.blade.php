@@ -19,7 +19,17 @@
                 <li><a href="{{ url('bundles') }}">Functions</a></li>
             </ul>
             <ul class="headercontentslogo">
-                <li><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+                <li>
+  <a
+    href="https://wa.me/96176075491"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Chat on WhatsApp"
+  >
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</li>
+
                 <li><a href="/login"><i class="fa-solid fa-user"></i></a></li>
             </ul>
         </nav>

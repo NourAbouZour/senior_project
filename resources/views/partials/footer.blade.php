@@ -3,12 +3,25 @@
         <div class="footer-content">
             <!-- Newsletter Section -->
             <div class="newsletter">
-                <h2>GET UPDATES ON FUN STUFF YOU PROBABLY WANT TO KNOW ABOUT IN YOUR INBOX.</h2>
-                <form>
-                    <input type="email" placeholder="Email address" required>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+    <h2>GET UPDATES ON FUN STUFF YOU PROBABLY WANT TO KNOW ABOUT IN YOUR INBOX.</h2>
+
+    @if(session('success'))
+      <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <form action="{{ route('newsletter.store') }}" method="POST">
+        @csrf
+        <input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          required
+        >
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
 
             <!-- Menu Links -->
             <div class="menu">
