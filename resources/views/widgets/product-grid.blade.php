@@ -409,7 +409,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // checkout stub
   checkoutBtn.addEventListener('click', () => {
-    alert(`Proceeding to checkout. Total is ${totalDisplay.innerText}`);
-  });
+  if (!cart.length) {
+    return alert('Your cart is empty!');
+  }
+
+  fetch("{{ route('cart.checkout') }}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    body: JSON.stringify({ items: cart })
+  })
+  .then(res => res.json())
+  .then(json => {
+    if (json.success) {
+      alert(`Cart saved! Your cart ID is #${json.cart_id}.`);
+      // optionally: window.location = `/order/confirmation/${json.cart_id}`;
+    } else {
+      alert('Something went wrong saving your cart.');
+    }
+  })
+  .catch(() => alert('Network error saving cart.'));
+});
+
 });
 </script>

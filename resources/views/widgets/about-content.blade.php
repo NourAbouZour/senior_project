@@ -9,6 +9,6 @@
         </p>
     </div>
     <div class="about-image">
-        <img src="{{ asset('images/aboutus.png') }}" alt="Our Story">
+        <img src="{{ asset('images/aboutus.jpeg') }}" alt="Our Story">
     </div>
 </section>

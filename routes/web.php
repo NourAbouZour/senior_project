@@ -68,13 +68,13 @@ Route::view('/terms', 'widgets.termsandconditions')
 
 Route::post('/contact', [ContactController::class, 'store'])
      ->name('contact.store');
-
-
-
-
 Route::post('/newsletter', [NewsletterController::class, 'store'])
      ->name('newsletter.store');
 
+use App\Http\Controllers\CartController;
+
+Route::post('/cart/checkout', [CartController::class, 'store'])
+     ->name('cart.checkout');
 
 
 
