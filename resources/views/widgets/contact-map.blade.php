@@ -7,11 +7,7 @@
                 <span>AUST UNIVERSITY</span>
                 <p>ACHRAFIEH</p>
             </div>
-            <a href="https://www.google.com/maps?q=33.884571373220496,35.52048677550914">
-                <button class="get-direction">
-                    <i class="fas fa-directions"></i> Get Direction
-                </button>
-            </a>
+           
         </div>
         <div class="contact-details">
             <div class="detail">

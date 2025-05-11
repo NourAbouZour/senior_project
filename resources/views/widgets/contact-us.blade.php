@@ -9,11 +9,7 @@
                 <span>AUST UNIVERSITY</span>
                 <p>ACHRAFIEH</p>
             </div>
-            <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.197331088868!2d35.52048677550914!3d33.884571373220496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f1784b983a771%3A0x8aa049ad3b0cd195!2sAmerican%20University%20of%20Science%20and%20Technology%2C%20Beirut%20Campus!5e0!3m2!1sen!2slb!4v1739121659246!5m2!1sen!2slb">
-                <button class="get-direction">
-                    <i class="fas fa-directions"></i> Get Direction
-                </button>
-            </a>
+            
         </div>
         <div class="contact-details">
             <div class="detail">
