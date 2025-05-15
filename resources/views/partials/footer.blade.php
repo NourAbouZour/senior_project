@@ -41,9 +41,9 @@
     padding-bottom: 25px;
     top: 22px;">Support</h3>
                 <ul>
-                    <li><a href="#">Certifications</a></li>
-                    <li><a href="#">Live Chat</a></li>
-                    <li><a href="#">Leave a Review</a></li>
+                    <li><a href="{{ asset('certifications') }}">Certifications</a></li>
+                    <li><a href="https://wa.me/96176075491">Live Chat</a></li>
+                    <li><a href="{{ asset('terms') }}">Terms and Conditions</a></li>
                 </ul>
             </div>
         </div>

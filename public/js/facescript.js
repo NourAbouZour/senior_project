@@ -4,6 +4,12 @@ const video = document.getElementById('video');
 let loggedIn = false;
 let sessionLogged = false;
 
+// 1) create a single options object with smaller input and threshold
+const detectorOptions = new faceapi.TinyFaceDetectorOptions({
+  inputSize: 224,          // was 416
+  scoreThreshold: 0.5      // new: skip low-confidence faces
+});
+
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models/tiny_face_detector'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models/face_landmark_68'),
@@ -37,7 +43,8 @@ video.addEventListener('play', async () => {
   document.querySelector('.video-wrapper').appendChild(canvas);
   faceapi.matchDimensions(canvas, { width: video.videoWidth, height: video.videoHeight });
 
-  const labeledDescriptors = await loadLabeledImages();
+  // 2) only load 5 images per label instead of 10
+  const labeledDescriptors = await loadLabeledImages(10);
   if (labeledDescriptors.length === 0) {
     document.getElementById('status').textContent = '❌ No training images loaded!';
     return;
@@ -47,7 +54,7 @@ video.addEventListener('play', async () => {
 
   setInterval(async () => {
     const detections = await faceapi
-      .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 416 }))
+      .detectAllFaces(video, detectorOptions)       // use our smaller, thresholded options
       .withFaceLandmarks()
       .withFaceDescriptors();
 
@@ -85,7 +92,8 @@ video.addEventListener('play', async () => {
   }, 500);
 });
 
-async function loadLabeledImages() {
+// modified to accept a maxImages parameter
+async function loadLabeledImages(maxImages = 10) {
   const res = await fetch('/api/labels');
   if (!res.ok) throw new Error('Could not fetch label list');
   const labels = await res.json();
@@ -95,24 +103,21 @@ async function loadLabeledImages() {
   for (const label of labels) {
     const descriptors = [];
 
-    for (let i = 1; i <= 10; i++) {
-      // try each extension
+    for (let i = 1; i <= maxImages; i++) {   // was <= 10
       for (const ext of ['jpg','jpeg','png']) {
         const url = `/labeled_images/${label}/${i}.${ext}`;
         try {
           const img = await faceapi.fetchImage(url);
           const det = await faceapi
-            .detectSingleFace(img, new faceapi.TinyFaceDetectorOptions({ inputSize: 416 }))
+            .detectSingleFace(img, detectorOptions)  // use smaller options here too
             .withFaceLandmarks()
             .withFaceDescriptor();
           if (det && det.descriptor) {
             descriptors.push(det.descriptor);
             console.log(`✅ [${label}] loaded descriptor from ${i}.${ext}`);
-            break;  // got one, move on to next i
+            break;
           }
-        } catch {
-          // failed to load or no face, try next extension
-        }
+        } catch {}
       }
     }
 

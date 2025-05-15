@@ -23,7 +23,8 @@
                 <i class="fas fa-envelope"></i>
                 <div>
                     <h4>General Enquiries</h4>
-                    <p>smarthousesystem123@gmail.com</p>
+             <p><a href="mailto:smarthousesystem@gmail.com?subject=Hello%20There&amp;body=I%20wanted%20to%20get%20in%20touch" style="color: #2980b9 ;text-decoration: none;">smarthousesystem@gmail.com</a></p>
+
                 </div>
             </div>
             <div class="detail">

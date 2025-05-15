@@ -1,13 +1,11 @@
 <div id="garage" class="category">
     <h2>Garage Control Panel</h2>
-    <div class="feature">
-        <h3>Garage Door</h3>
-        <label class="switch">
-            <input type="checkbox" onchange="toggleGarageDoor(this.checked)">
-            <span class="slider"></span>
-        </label>
-        <span id="garageDoorStatus">Closed</span>
-    </div>
+   <div class="feature">
+  <h3>Garage Door</h3>
+  <button class="feature-btn" onclick="window.location.href='http://192.168.1.1';">
+    OPEN/CLOSE
+  </button>
+</div>
     <div class="feature">
         <h3>Car Locator</h3>
         <label class="switch">

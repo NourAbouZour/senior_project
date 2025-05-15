@@ -11,6 +11,7 @@
             <img src="{{ asset('images/installation.webp') }}" alt="Installation">
             <h2>Installation</h2>
             <p>These systems can be as simple or as complex. We have a team of experts to keep it easy for you by doing proper installation.</p>
+            <br>
             <a href="{{ url('contactus') }}"><button>Enquire Now</button></a>
         </div>
         <div class="card">

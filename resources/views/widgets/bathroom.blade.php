@@ -30,6 +30,6 @@
         </label>
         <span id="bathroomMusicStatus">Off</span>
     </div>
-    <audio id="bathroomAlarmSound" src="{{ asset('audio/alarm.mp3') }}" preload="auto"></audio>
-    <audio id="bathroomMusicAudio" src="{{ asset('audio/sample-music.mp3') }}" preload="auto" loop></audio>
+    <audio id="bathroomAlarmSound" src="{{ asset('audio/alarm2.wav') }}" preload="auto"></audio>
+    <audio id="bathroomMusicAudio" src="{{ asset('audio/music.mp3') }}" preload="auto" loop></audio>
 </div>

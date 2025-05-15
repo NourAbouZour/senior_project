@@ -28,5 +28,5 @@
         </label>
         <span id="wakeUpStatus">Off</span>
     </div>
-    <audio id="bedroomAlarmSound" src="{{ asset('audio/alarm.mp3') }}" preload="auto"></audio>
+    <audio id="bedroomAlarmSound" src="{{ asset('audio/alarm2.wav') }}" preload="auto"></audio>
 </div>

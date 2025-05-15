@@ -91,11 +91,14 @@
       <h2>12. Contact Information</h2>
       <p>If you have any questions about these Terms, please contact us at:</p>
       <ul>
-        <li><strong>Email:</strong> <a href="smarthousesystem@gmail.com">support@your-website.com</a></li>
+        <li><strong>Email:</strong> <a href="mailto:smarthousesystem@gmail.com?subject=Hello%20There&body=I%20wanted%20to%20get%20in%20touch">smarthousesystem@gmail.com</a></li>
         <li><strong>Address:</strong> AUST ACHARFIEH</li>
         <li><strong>Phone:</strong> +961 76075491</li>
       </ul>
     </section>
+    <div class="back-button">
+    <a href="/">&larr; Return Home</a>
+  </div>
   </main>
 </body>
 </html>
@@ -174,5 +177,18 @@ a:hover {
 
 strong {
   color: var(--color-heading);
+}
+.back-button{
+  display: inline-block;
+    padding: 10px 20px;
+    background: #2980b9;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+.back-button a{
+  color: white;
+  text-decoration: none;
 }
 </style>

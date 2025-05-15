@@ -35,6 +35,6 @@
         <input type="range" id="fridgeTempSlider" min="2" max="8" step="0.1" value="4" onchange="updateFridgeTemp(this.value)">
         <span id="fridgeTempDisplay">4°C</span>
     </div>
-    <audio id="ovenAlarmSound" src="{{ asset('audio/alarm.mp3') }}" preload="auto"></audio>
-    <audio id="microwaveAlarmSound" src="{{ asset('audio/alarm.mp3') }}" preload="auto"></audio>
+    <audio id="ovenAlarmSound" src="{{ asset('audio/alarm2.wav') }}" preload="auto"></audio>
+    <audio id="microwaveAlarmSound" src="{{ asset('audio/alarm2.wav') }}" preload="auto"></audio>
 </div>
