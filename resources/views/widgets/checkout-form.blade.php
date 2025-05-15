@@ -1,5 +1,25 @@
 <form method="POST" action="{{ route('checkout.store') }}" class="checkout-form">
   @csrf
+ <div class="form-group">
+    <label>Cart ID</label>
+    <input
+      type="text"
+      name="cart_id"
+      value="{{ $cartId }}"
+      readonly
+    >
+  </div>
+
+  <div class="form-group">
+    <label>Total</label>
+    <input
+      type="text"
+      name="total"
+      value="{{ $total }}"
+      readonly
+    >
+  </div>
+
 
   {{-- show success message --}}
   @if(session('success'))

@@ -1,3 +1,4 @@
+@ -0,0 +1,32 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,7 +17,7 @@ return new class extends Migration
     $table->foreignId('cart_id')->constrained()->onDelete('cascade');
     $table->string('product_name');
     $table->integer('quantity');
-    // optional: $table->decimal('price', 8, 2);
+    $table->decimal('price', 8, 2);
     $table->timestamps();
 });
 

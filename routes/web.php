@@ -13,69 +13,107 @@ use App\Http\Controllers\FrameController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\CartController;
+
+/*
+|--------------------------------------------------------------------------
+| Public Pages
+|--------------------------------------------------------------------------
+*/
 
 // Homepage
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::view('/', 'pages.home')->name('home');
 
-// Products
-Route::get('/products', [ProductsController::class, 'index'])->name('products');
+// Products listing
+Route::get('/products', [ProductsController::class, 'index'])
+     ->name('products');
 
 // Static pages
-Route::get('/aboutus', fn() => view('pages.aboutus'))->name('aboutus');
-Route::get('/contactus', fn() => view('pages.contact'))->name('contact');
-Route::get('/productdesc', fn() => view('pages.product-detail'))->name('product.detail');
+Route::view('/aboutus', 'pages.aboutus')->name('aboutus');
+Route::view('/contactus', 'pages.contact')->name('contact');
+Route::view('/productdesc', 'pages.product-detail')
+     ->name('product.detail');
 
-// Smart house functions (protected—check session in your controller)
-Route::get('/functions', [SmartHouseController::class, 'index'])->name('functions');
-
-// Face detection signup/signin
-Route::get('/face_detection', [FaceDetectionController::class, 'index'])->name('face_detection');
-
-
-Route::get('/login', [LoginController::class, 'index'])->name('login.form');
-// Handle the POST
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-
-// register page & store
-Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
-Route::post('/register', [RegisterController::class, 'store'])->name('register');
-
-// Bundles
+// Bundles, face‐detection, smart‐house, record
 Route::get('/bundles', [BundleController::class, 'index'])->name('bundles');
-
-// Camera capture (face signup)
+Route::get('/face_detection', [FaceDetectionController::class, 'index'])
+     ->name('face_detection');
+Route::get('/functions', [SmartHouseController::class, 'index'])
+     ->name('functions');
 Route::view('/record', 'pages.record')->name('frames.record');
-Route::post('/upload-frames', [FrameController::class, 'store'])->name('frames.upload');
 
-// API for labels
-Route::get('/api/labels', [LabelController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| Authentication
+|--------------------------------------------------------------------------
+*/
 
+Route::get('/login', [LoginController::class, 'index'])
+     ->name('login.form');
+Route::post('/login', [LoginController::class, 'login'])
+     ->name('login');
 
+Route::get('/register', [RegisterController::class, 'index'])
+     ->name('register.form');
+Route::post('/register', [RegisterController::class, 'store'])
+     ->name('register');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])
-     ->name('checkout.index');
-
-Route::post('/checkout', [CheckoutController::class, 'store'])
-     ->name('checkout.store');
-// If you just need to return a view:
-Route::view('/terms', 'widgets.termsandconditions')
-     ->name('terms');
-
-
+/*
+|--------------------------------------------------------------------------
+| Contact & Newsletter
+|--------------------------------------------------------------------------
+*/
 
 Route::post('/contact', [ContactController::class, 'store'])
      ->name('contact.store');
 Route::post('/newsletter', [NewsletterController::class, 'store'])
      ->name('newsletter.store');
 
-use App\Http\Controllers\CartController;
+/*
+|--------------------------------------------------------------------------
+| Cart (AJAX) → must be defined BEFORE the /checkout POST
+|--------------------------------------------------------------------------
+|
+| This is the endpoint your JS calls via fetch("{{ route('cart.checkout') }}")
+| i.e. POST /cart/checkout → CartController@store
+|
+*/
 
+// … your other routes …
+
+// 1) Cart save endpoint (will redirect on success)
 Route::post('/cart/checkout', [CartController::class, 'store'])
      ->name('cart.checkout');
 
+// 2) Checkout form display
+Route::get('/checkout', [CheckoutController::class, 'create'])
+     ->name('checkout.create');
 
 
+/*
+|--------------------------------------------------------------------------
+| Checkout Form
+|--------------------------------------------------------------------------
+|
+| GET  /checkout        → shows the form (CheckoutController@create)
+| POST /checkout        → processes the form (CheckoutController@store)
+|
+*/
 
+Route::get('/checkout', [CheckoutController::class, 'create'])
+     ->name('checkout.create');
+Route::post('/checkout', [CheckoutController::class, 'store'])
+     ->name('checkout.store');
+
+// (Optional) alias if you really need /checkout/index
+Route::get('/checkout/index', [CheckoutController::class, 'create'])
+     ->name('checkout.index');
+
+/*
+|--------------------------------------------------------------------------
+| Misc
+|--------------------------------------------------------------------------
+*/
+
+Route::view('/terms', 'widgets.termsandconditions')
+     ->name('terms');
